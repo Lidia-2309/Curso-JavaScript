@@ -1,5 +1,19 @@
 #titulo{
-  color: #295872;
+  color: hwb(201 16% 55%);
   text-align: center;
-  font-family: 'Faster One', cursive;
+  font-family: 'Monoton', cursive;
+  font-size: 75px;
 }
+
+nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  padding:20px 7%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgb(137, 168, 178);
+  height: 14vh;
+}
+
