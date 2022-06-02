@@ -1,4 +1,6 @@
+let cart =[];
 let modalQt = 1;
+let modalKey = 0;
 
 pizzaJson.map((item,index) =>{
 
@@ -17,6 +19,7 @@ pizzaJson.map((item,index) =>{
 
       let key = eventoDeClique.target.closest('.pizza-item').getAttribute('data-key');
       modalQt = 1;
+      modalKey = key;
 
       document.querySelector('.pizzaBig img').src = pizzaJson[key].img;
       document.querySelector('.pizzaInfo h1').innerHTML = pizzaJson[key].name;
@@ -65,11 +68,48 @@ document.querySelector('.pizzaInfo--qtmais').addEventListener('click', () =>{
   
 });
 
-
-
 document.querySelectorAll('.pizzaInfo--size').forEach((size, sizeIndex)=>{
   size.addEventListener('click', (eventoDeClique) =>{
     document.querySelector('.pizzaInfo--size.selected').classList.remove('selected');
     size.classList.add('selected');
   });
 });
+
+document.querySelector('.pizzaInfo--addButton')
+.addEventListener('click', ()=>{
+
+  let size = document.querySelector('.pizzaInfo--size.selected').getAttribute('data-key');
+
+  let indentifier = pizzaJson[modalKey].id+'@'+size;
+  
+  let key = cart.findIndex((item)=>item.indentifier == indentifier);
+ 
+  if(key > -1){
+    console.log("aqui")
+      cart[key].qt += modalQt;
+  }
+  else{  
+    console.log(cart);
+    cart.push({
+    indentifier,
+    id: pizzaJson[modalKey].id,
+    size,
+    qt:modalQt
+    });
+    console.log(cart);
+  }
+
+  closeModal();
+  updateCart();
+});
+
+function updateCart(){
+  if (cart.length > 0){
+    console.log("S");
+    document.querySelector('aside').classList.add('show');
+  }
+  else{
+    document.querySelector('aside').classList.remove('show');
+  }
+}
+ 

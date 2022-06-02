@@ -369,10 +369,7 @@ h1 {
   aside {
       width:auto;
       position:fixed;
-      left:100vw;
-      right:0;
       top:0;
-      bottom:0;
       transition: all ease .2s;
   }
   aside.show {
